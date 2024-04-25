@@ -10,7 +10,7 @@
 
 Create a virtual environment and install all required packages.
 ```
-cd clvr_RewIR_starter
+cd clvr_impl_starter
 pip3 install virtualenv
 virtualenv -p $(which python3) ./venv
 source ./venv/bin/activate

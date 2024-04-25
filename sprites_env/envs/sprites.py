@@ -120,7 +120,7 @@ class SpritesEnv(gym.Env):
         np.random.seed(seed)
 
     def step(self, action):
-        vel = np.array(action) * self.max_speed
+        vel = np.array(action[0]) * self.max_speed
         state = self._state.copy()
         state[0,2:] = vel
         pos_state, self._state = self.forward(state)

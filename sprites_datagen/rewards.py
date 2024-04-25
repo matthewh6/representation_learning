@@ -65,4 +65,15 @@ class TargetYReward(Reward):
 
     def __call__(self, trajectories, shapes):
         return trajectories[:, 1, 0]
+    
+class FollowReward(Reward):
+    """Returns reward inversely proportional to the L2 distance between agent and target."""
+    NAME = 'follow'
 
+    def __call__(self, trajectories, shapes):
+        agent_pos = trajectories[:, 0, :2]
+        target_pos = trajectories[:, 1, :2]
+
+        reward = [1 - np.sqrt(((agent_pos[i] - target_pos[i]) ** 2).sum()) / np.sqrt(2)
+                  for i in range(trajectories.shape[0])]
+        return np.asarray(reward, dtype=np.float32)
